@@ -6,6 +6,7 @@
 #include <unordered_map>
 #include <unordered_set>
 #include <map>
+#include <set>
 
 using namespace std;
 
@@ -129,10 +130,20 @@ int minMaxDifference(int num) {
     return maxi - mini;
 }
 int minimizeSum(vector<int>& nums) {
-    if(nums.size() == 3) return 0;
-    
+    sort(nums.begin(), nums.end());
+    int res = nums[nums.size() - 2] - nums[1];
+    res = min(res, nums[nums.size() - 3] - nums[0]);
+    res = min(res, nums[nums.size() - 1] - nums[2]);
+    return res;
 }
-
+int minImpossibleOR(vector<int>& nums) {
+    unordered_set<int> st(nums.begin(), nums.end());
+    for (int i = 0; i <= 30; i++)
+    {
+        if(!st.count(1 << i)) return 1 << i;
+    }
+    return 0;
+}
 
 int main() {
     string res(5, 'a');
