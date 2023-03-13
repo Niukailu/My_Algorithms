@@ -24,6 +24,8 @@ public:
 
 
 int main() {
+    shared_ptr<Monster> s = make_shared<Monster>();
+
     unique_ptr<Monster> a(new Monster);
     unique_ptr<Monster> b(a.release());
     
