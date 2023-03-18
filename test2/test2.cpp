@@ -10,6 +10,7 @@ class Monster
 public:
     weak_ptr<Monster> m_father;
     weak_ptr<Monster> m_son;
+    int a = 10;
 
     void setFather(shared_ptr<Monster>& father) {
         m_father = father;
@@ -22,12 +23,14 @@ public:
     }
 };
 
-
 int main() {
     shared_ptr<Monster> s = make_shared<Monster>();
+    shared_ptr<Monster> ss = make_shared<Monster>();
+    
 
     unique_ptr<Monster> a(new Monster);
     unique_ptr<Monster> b(a.release());
+    
     
 
 

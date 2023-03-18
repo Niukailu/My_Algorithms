@@ -1,38 +1,53 @@
-#include <iostream>
-#include <stdio.h>
+#include <bits/stdc++.h>
+
 using namespace std;
- 
-class Test
+
+class B;
+
+class A
+{
+private:
+	int age = 10;
+	static int cnt;
+public:
+	static void fun1() {
+		
+	}
+	void print(int age) {
+		cnt++;
+		cout << this->cnt << endl;
+		this->age = age;
+		cout << this->age << endl;
+	}
+	friend class B;
+};
+
+int A::cnt = 0;
+
+class B
 {
 public:
-	Test(int a, int b, int c) : 
-		m_a(a),
-		m_b(b),
-		m_c(c)
-	{
-		m = a + b + c;
+	void print2(A a, int age) {
+		a.age = age;
+		cout << a.age << endl;
 	}
- 
-	void Show()
-	{
-		cout << "m = " << m << endl;
+
+	void print3(A a, int age) {
+		a.age = age;
+		cout << a.age << endl;
 	}
- 
-private:
-	int m_a, m_b, m_c;
-	static int m;
 };
- 
-int Test::m = 0; //初始化静态数据成员
- 
+
+
+
 int main()
 {
-	Test ClassA(1, 1, 1);
-	ClassA.Show();  //输出: 3
-	Test ClassB(3, 3, 3);
-	ClassB.Show(); //输出: 9
-	ClassA.Show(); //输出: 9
- 
-	system("pause");
+	A a;
+	a.print(1);
+	A aa;
+	aa.print(2);
+
+
+
 	return 0;
 }

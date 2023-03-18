@@ -2,14 +2,26 @@
 
 using namespace std;
 
-class a{};
-
+char* strcpy2(char* dest, const char* src) {
+   assert(dest != nullptr && src != nullptr);
+   char* ret = dest;
+   while (true)
+   {
+      *dest = *src;
+      if(*src == '\0') break;
+      dest++;
+      src++;
+   }
+   
+   return ret;
+}
 
 int main()
 {
-   a aa;
-   cout << sizeof(aa) << endl;
-
+   char a[10];
+   strcpy2(a, "aaaaa");
+   printf(a);
+   
 
    return 0;
 }
