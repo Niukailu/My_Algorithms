@@ -1,6 +1,6 @@
 #ifndef __B_H__
 #define __B_H__
 
-int num;
+int numadd(int a, int b);
 
 #endif

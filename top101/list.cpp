@@ -212,6 +212,86 @@ ListNode* deleteDuplicates(ListNode* head) {
 }
 
 
+ListNode* Merge(ListNode* pHead1, ListNode* pHead2) {
+    ListNode* dummyhead = new ListNode(0);
+    ListNode* pre = dummyhead;
+    while (pHead1 != nullptr && pHead2 != nullptr)
+    {
+        if(pHead1->val < pHead2->val) {
+            pre->next = pHead1;
+            pre = pHead1;
+            pHead1 = pHead1->next;
+        }
+        else {
+            pre->next = pHead2;
+            pre = pHead2;
+            pHead2 = pHead2->next;
+        }
+    }
+    if(pHead1 != nullptr) pre->next = pHead1;
+    else pre->next = pHead2;
+    return dummyhead->next;  
+}
+
+void reorderList(ListNode* head) {
+    if(head == nullptr || head->next == nullptr) return;
+    ListNode *slow = head, *quick = head;
+    while (quick != nullptr && quick->next != nullptr)
+    {
+        quick = quick->next->next;
+        slow = slow->next;
+    }
+    ListNode* cur = slow->next;
+    slow->next = nullptr;
+    ListNode* pre = nullptr;
+    while (cur != nullptr)
+    {
+        ListNode* next = cur->next;
+        cur->next = pre;
+        pre = cur;
+        cur = next;
+    }
+    ListNode *left = head, *right = pre;
+    while (left != nullptr && right != nullptr)
+    {
+        ListNode* next = left->next;
+        left->next = right;
+        ListNode* next2 = right->next;
+        right->next = next;
+        left = next;
+        right = next2;
+    }
+}
+
+ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+    ListNode* dummyhead = new ListNode(0);
+    ListNode* pre = dummyhead;
+    int carry = 0;
+    while (l1 != nullptr || l2 != nullptr)
+    {
+        int a = 0, b = 0;
+        if(l1 != nullptr) {
+            a = l1->val;
+            l1 = l1->next;
+        }
+        if(l2 != nullptr) {
+            b = l2->val;
+            l2 = l2->next;
+        }
+        int tmp = carry + a + b;
+        ListNode* cur = new ListNode(tmp % 10);
+        pre->next = cur;
+        pre = pre->next;
+        carry = tmp / 10;
+    }
+    if(carry) {
+        pre->next = new ListNode(carry);
+    }
+    return dummyhead->next;
+}
+
+
+
 int main() {
 
 

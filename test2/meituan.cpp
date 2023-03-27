@@ -144,7 +144,21 @@ vector<int> fun5(vector<int> dists, vector<vector<int>> edges) {
     return res;
 }
 
-
+//欧拉筛
+vector<int> getPrim(int n) {
+    vector<int> prims;
+    vector<bool> vis(n + 1, false);
+    for (int i = 2; i <= n; i++)
+    {
+        if(!vis[i]) prims.push_back(i);
+        for(int& p : prims) {
+            if(p > n / i) break;
+            vis[p * i] = true;
+            if(i % p == 0) break;
+        }
+    }
+    return prims;
+}
 
 int main() {
 

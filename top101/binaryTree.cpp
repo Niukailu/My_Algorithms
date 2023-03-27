@@ -236,6 +236,20 @@ TreeNode* reConstructBinaryTree(vector<int> pre,vector<int> vin) {
     return _reConstructBinaryTree(pre, vin, 0, vin.size() - 1, 0);
 }
 
+int maxlen = 0;
+int dfs_path(TreeNode* root) {
+    if(root == nullptr) return 0;
+    int left = dfs_path(root->left);
+    int right = dfs_path(root->right);
+    int l = 0;
+    if(root->left != nullptr && root->left->val == root->val) l = left;
+    int r = 0;
+    if(root->right != nullptr && root->right->val == root->val) r = right;
+    maxlen = max(maxlen, l + r);
+    return max(l, r) + 1;
+}
 
-
-
+int longestUnivaluePath(TreeNode* root) {
+    dfs_path(root);
+    return maxlen;
+}

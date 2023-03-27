@@ -181,3 +181,19 @@ ListNode *detectCycle(ListNode *head) {
     }
     return NULL;        
 }
+
+ListNode* deleteDuplicates(ListNode* head) {
+    ListNode* cur = head;
+    while (cur != nullptr)
+    {
+        while (cur->next != nullptr && cur->next->val == cur->val)
+        {
+            ListNode* tmp = cur->next;
+            cur->next = cur->next->next;
+            delete tmp;
+        }
+        cur = cur->next;
+    }
+    return head;
+}
+

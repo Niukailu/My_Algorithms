@@ -16,12 +16,32 @@ char* strcpy2(char* dest, const char* src) {
    return ret;
 }
 
+class a
+{
+public:
+   int cnt = 0;
+   void fun1() {
+      ++cnt;
+   }
+   void fun2() const {
+      
+   }
+};
+
 int main()
 {
-   char a[10];
-   strcpy2(a, "aaaaa");
-   printf(a);
+   int n = 1;
+   for (int i = 0; i < 3; i++)
+   {
+      [n] () mutable {
+         ++n;
+         cout << n << endl;
+      }();
+   }
    
+   cout << n << endl;
+
+
 
    return 0;
 }
